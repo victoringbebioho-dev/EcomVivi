@@ -24,18 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 1024) {
           closeMenu();
         }
       });
     });
 
     window.addEventListener('scroll', () => {
-      if (window.innerWidth < 768 && window.scrollY > 8) closeMenu();
+      if (window.innerWidth < 1024 && window.scrollY > 8) closeMenu();
     }, { passive: true });
 
     window.addEventListener('resize', () => {
-      if (window.innerWidth >= 768) closeMenu();
+      if (window.innerWidth >= 1024) closeMenu();
     });
   }
 
