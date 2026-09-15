@@ -1,0 +1,1281 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="EcomVivi, importateur et distributeur de produits alimentaires de qualité au Bénin.">
+    <title>EcomVivi</title>
+    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=20260915">
+</head>
+
+<body>
+    <a href="#accueil" class="skip-link">Aller au contenu principal</a>
+    <!-- Section Navbar -->
+    <header>
+        <nav class="bg-white/75 backdrop-blur-md fixed w-full shadow-lg z-20 top-0 start-0 border-b border-default">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <!-- Logo -->
+                <a href="#accueil" class="flex items-center space-x-0.5 rtl:space-x-reverse">
+                    <span class="self-center text-3xl me-6 text-heading font-bold whitespace-nowrap -translate-y-2">
+                        Ecom<span class="text-blue-600">Vivi</span>
+                    </span>
+                </a>
+                <!-- Bouton menu mobile -->
+                <button id="menu-toggle" data-collapse-toggle="navbar-default" type="button"
+                    class="menu-button inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-full md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none"
+                    aria-controls="navbar-default" aria-expanded="false" aria-label="Ouvrir le menu principal">
+                    <span class="sr-only">Open main menu</span>
+                    <span class="menu-icon text-blue-600">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </button>
+                <!-- Menu -->
+                <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                    <ul
+                        class="font-medium flex flex-col gap-3 p-4 md:p-0 mt-4 border border-default rounded-base bg-neutral-secondary-soft md:flex-row md:items-center md:space-x-6 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-neutral-primary">
+                        <!-- Accueil -->
+                        <li>
+                            <a href="#accueil"
+                                class="group relative py-2 px-3 text-gray-600 bg-brand hover:text-blue-600 rounded md:bg-transparent md:text-fg-brand md:p-0">
+                                <span
+                                    class="absolute inset-x-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                Accueil
+                            </a>
+                        </li>
+                        <!-- Produits -->
+                        <li>
+                            <a href="#nos-produits" data-products-view>
+                                <button data-dropdown-toggle="dropdownNavbar"
+                                    class="group relative flex items-center justify-between hover:text-blue-600 w-full py-2 px-3 rounded font-medium text-gray-600 md:w-auto hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0">
+                                    <span
+                                        class="absolute inset-x-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                    Nos Produits
+                                </button>
+                            </a>
+                            
+                        </li>
+                        <!-- À propos -->
+                        <li>
+                            <a href="#apropos"
+                                class="group relative py-2 px-3 text-gray-600 bg-brand hover:text-blue-600 rounded md:bg-transparent md:text-fg-brand md:p-0">
+                                <span
+                                    class="absolute inset-x-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                À Propos
+                            </a>
+                        </li>
+                        <!-- Contact -->
+                        <li>
+                            <a href="#contact"
+                                class="group relative py-2 px-3 text-gray-600 bg-brand hover:text-blue-600 rounded md:bg-transparent md:text-fg-brand md:p-0">
+                                <span
+                                    class="absolute inset-x-0 bottom-0 h-0.5 w-0 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                                Contact
+                            </a>
+                        </li>
+                        <!-- Recherche -->
+                        <li class="w-auto">
+                            <form id="search-form" class="search-shell relative" role="search">
+                                <button id="search-toggle" type="button" aria-label="Ouvrir la recherche"
+                                    aria-expanded="false" title="Rechercher"
+                                    class="inline-flex h-10 w-10 items-center justify-center rounded-full text-blue-700 hover:bg-blue-100 transition">
+                                    <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                            d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+                                    </svg>
+                                </button>
+                                <div id="search-panel"
+                                    class="absolute right-0 top-full z-30 mt-2 hidden w-64 rounded-xl border border-blue-100 bg-white p-2 shadow-xl">
+                                    <input id="search-input" type="search" aria-label="Rechercher un produit"
+                                        placeholder="Rechercher..." autocomplete="off"
+                                        class="block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-600">
+                                </div>
+                            </form>
+                        </li>
+                        <!-- Authentification -->
+                        <li id="auth-guest" class="flex flex-col sm:flex-row items-stretch gap-2">
+                            <button type="button" data-auth-open="register"
+                                class="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-user-round-arrow-left">
+                                    <path d="m19 16-3 3" />
+                                    <path d="M2 21a8 8 0 0 1 12.664-6.5" />
+                                    <path d="M22 19h-6l3 3" />
+                                    <circle cx="10" cy="8" r="5" />
+                                </svg>
+                                S'inscrire
+                            </button>
+                            <button type="button" data-auth-open="login"
+                                class="flex items-center gap-2 px-4 py-2 text-sm font-semibold text-blue-700 border border-blue-400 rounded-lg hover:bg-blue-100 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-user-round-key">
+                                    <path d="M19 11v6" />
+                                    <path d="M19 13h2" />
+                                    <path d="M2 21a8 8 0 0 1 12.868-6.349" />
+                                    <circle cx="10" cy="8" r="5" />
+                                    <circle cx="19" cy="19" r="2" />
+                                </svg>
+                                Se connecter
+                            </button>
+                        </li>
+                        <li id="auth-user" class="hidden items-center gap-2">
+                            <span class="auth-user-badge">
+                                <span id="auth-user-initial" class="auth-user-initial" aria-hidden="true"></span>
+                                <span id="auth-user-name" class="max-w-32 truncate"></span>
+                            </span>
+                            <button id="auth-logout" type="button"
+                                class="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-gray-600 border border-gray-500 rounded-lg hover:text-blue-700 hover:border-blue-400 hover:bg-blue-50 transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="lucide lucide-log-out">
+                                    <path d="m16 17 5-5-5-5" />
+                                    <path d="M21 12H9" />
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                </svg>
+                                Déconnexion
+                            </button>
+                        </li>
+                        <!-- Panier -->
+                        <li>
+                            <button type="button" data-cart-open
+                                class="text-white bg-blue-600 flex items-center justify-center gap-3 rounded-lg w-40 h-10 hover:bg-blue-700 transition">
+
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M7.5 18C8.32843 18 9 18.6716 9 19.5C9 20.3284 8.32843 21 7.5 21C6.67157 21 6 20.3284 6 19.5C6 18.6716 6.67157 18 7.5 18Z"
+                                        stroke="#ffffff" stroke-width="1.5" />
+                                    <path
+                                        d="M16.5 18.0001C17.3284 18.0001 18 18.6716 18 19.5001C18 20.3285 17.3284 21.0001 16.5 21.0001C15.6716 21.0001 15 20.3285 15 19.5001C15 18.6716 15.6716 18.0001 16.5 18.0001Z"
+                                        stroke="#ffffff" stroke-width="1.5" />
+                                    <path d="M13 13V11M13 11V9M13 11H15M13 11H11" stroke="#ffffff" stroke-width="1.5"
+                                        stroke-linecap="round" />
+                                    <path
+                                        d="M2 3L2.26121 3.09184C3.5628 3.54945 4.2136 3.77826 4.58584 4.32298C4.95808 4.86771 4.95808 5.59126 4.95808 7.03836V9.76C4.95808 12.7016 5.02132 13.6723 5.88772 14.5862C6.75412 15.5 8.14857 15.5 10.9375 15.5H12M16.2404 15.5C17.8014 15.5 18.5819 15.5 19.1336 15.0504C19.6853 14.6008 19.8429 13.8364 20.158 12.3075L20.6578 9.88275C21.0049 8.14369 21.1784 7.27417 20.7345 6.69708C20.2906 6.12 18.7738 6.12 17.0888 6.12H11.0235M4.95808 6.12H7"
+                                        stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
+                                </svg>
+
+                                <span>Panier <span
+                                        class="cart-count ml-1 inline-flex min-w-5 items-center justify-center rounded-full bg-white/20 px-1.5 text-xs">0</span></span>
+                            </button>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="mobile-nav-spacer"
+        class="h-14 lg:h-14 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),transparent_40%),radial-gradient(circle_at_bottom_right,_rgba(96,165,250,0.15),transparent_40%)]">
+    </div>
+    <!-- section de contenu principal -->
+    <main class="overflow-x-hidden">
+        <!-- section carousel -->
+        <section id="accueil" class="relative overflow-hidden from-blue-50 via-white to-blue-100">
+            <!-- Dégradé radial -->
+            <div
+                class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.15),transparent_40%),radial-gradient(circle_at_bottom_right,_rgba(96,165,250,0.15),transparent_40%)]">
+            </div>
+            <!-- Quadrillage -->
+            <div class="absolute inset-0 opacity-20" style="background-image:
+                linear-gradient(to right,#f3f4f6 1px,transparent 1px),
+                linear-gradient(to bottom,#f3f4f6 1px,transparent 1px);
+                background-size:40px 40px;">
+            </div>
+            <!-- Blob 1 -->
+            <div
+                class="absolute -top-32 -left-32 w-[450px] h-[450px] rounded-full bg-blue-600/20 blur-3xl animate-blob pointer-events-none">
+            </div>
+            <!-- Blob 2 -->
+            <div
+                class="absolute top-1/2 -right-40 w-[450px] h-[450px] rounded-full bg-blue-600/20 blur-3xl animate-blob animation-delay-2000 pointer-events-none">
+            </div>
+            <!-- Blob 3 -->
+            <div
+                class="absolute bottom-0 left-1/3 w-[350px] h-[350px] rounded-full bg-blue-300/20 blur-3xl animate-blob animation-delay-4000 pointer-events-none">
+            </div>
+            <div
+                class="relative z-10 grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-14 lg:py-14 xl:gap-6 lg:grid-cols-12">
+                <!-- Texte avec décoration arrière-plan -->
+                <!-- Texte -->
+                <div class="relative mr-auto place-self-center lg:col-span-7">
+
+                    <!-- <a href="#" class="inline-flex items-start" role="alert">
+                        <span
+                            class="inline-block px-5 py-2 mb-4 bg-blue-100 text-blue-600 rounded-full font-semibold tracking-wide">
+                            VOTRE PARTENAIRE D'IMPORTATION
+                        </span>
+                    </a> -->
+                    <h1
+                        class="max-w-2xl mb-4 text-5xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-gray-900">
+                        Bienvenue chez <span id="typewriter" class="text-blue-600"></span>
+
+                    </h1>
+                    <p class="text-base font-normal text-gray-600 md:text-xl py-6 max-w-2xl">
+                        Importateur et distributeur de produits alimentaires de qualité :
+                        tomates, farines, omo clean, sucres, riz, huiles, biscuits, mayonnaise,
+                        spaguetti, coquiettes et bien plus encore depuis la <span class="font-bold">Chine</span> et la
+                        <span class="font-bold">Turquie</span>.
+                        Nous vous proposons une large gamme de produits fiables
+                        à des prix compétitifs pour les particuliers et les professionnels.
+                    </p>
+                    <div class="py-6 flex flex-wrap justify-center md:justify-start items-center gap-4">
+
+                        <!-- Bouton Produits -->
+                        <a href="produits.html"
+                            class="inline-flex items-center gap-4 rounded-lg bg-blue-600 px-5 py-3 text-base font-medium text-white hover:bg-slate-900 transition duration-300">
+
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M15 21H5C3.89543 21 3 20.1046 3 19V8C3 7.44772 3.44772 7 4 7H14C14.5523 7 15 7.44772 15 8V10.5"
+                                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path
+                                    d="M9 12C9 11.4477 9.44772 11 10 11H20C20.5523 11 21 11.4477 21 12V19C21 20.1046 20.1046 21 19 21H11C9.89543 21 9 20.1046 9 19V12Z"
+                                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12 7V6C12 4.34315 10.6569 3 9 3V3C7.34315 3 6 4.34315 6 6V7" stroke="#ffffff"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M13 14L13 15C13 16.1046 13.8954 17 15 17V17C16.1046 17 17 16.1046 17 15L17 14"
+                                    stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            Voir nos produits
+                        </a>
+                        <!-- Bouton Contact -->
+                        <a href="http://wa.me/2290197763250" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center gap-4 rounded-lg bg-slate-900 px-5 py-3 text-base font-medium text-white hover:bg-blue-600 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" width="24" height="24" viewBox="0 0 24 24"
+                                style="color: lab(92.8% 0.72 -1.94);">
+                                <path fill="currentColor"
+                                    d="M13.25 3a.75.75 0 0 1 .75-.75A7.75 7.75 0 0 1 21.75 10a.75.75 0 0 1-1.5 0A6.25 6.25 0 0 0 14 3.75a.75.75 0 0 1-.75-.75m0 4a.75.75 0 0 1 .75-.75A3.75 3.75 0 0 1 17.75 10a.75.75 0 0 1-1.5 0A2.25 2.25 0 0 0 14 7.75a.75.75 0 0 1-.75-.75M9.004 3.416C8.432 2.606 7.64 2.241 6.8 2.25c-.797.008-1.573.349-2.221.803A6.2 6.2 0 0 0 2.92 4.79c-.41.649-.706 1.416-.666 2.165c.193 3.603 2.22 7.453 5.067 10.302c2.845 2.846 6.644 4.824 10.48 4.446c.752-.074 1.463-.457 2.044-.945a5.8 5.8 0 0 0 1.443-1.84c.34-.692.543-1.49.431-2.267c-.116-.81-.569-1.534-1.402-2.014a16 16 0 0 1-.512-.31c-.15-.093-.31-.194-.504-.31a7.5 7.5 0 0 0-1.249-.618c-.447-.163-.958-.27-1.49-.197c-.551.076-1.063.336-1.506.802c-.341.36-.843.472-1.549.268c-.718-.208-1.526-.724-2.228-1.422c-.702-.696-1.233-1.51-1.46-2.245c-.224-.728-.125-1.263.225-1.632c.473-.498.725-1.052.778-1.638c.052-.57-.09-1.106-.293-1.574c-.304-.699-.82-1.394-1.224-1.936a22 22 0 0 1-.3-.41">
+                                </path>
+                            </svg>
+
+                            Nous contacter
+
+                        </a>
+
+                    </div>
+                </div>
+                <!-- Image Carousel avec décoration arrière-plan -->
+                <div class="relative w-full lg:col-span-5">
+                    <!-- Carousel -->
+                    <div id="default-carousel" class="relative w-full z-10" data-carousel="slide">
+                        <!-- Carousel wrapper -->
+                        <div class="relative h-96 md:h-[500px] overflow-hidden rounded-lg shadow-lg">
+
+                            <!-- Image  -->
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+
+                                <img src="Images/Img14.jpeg"
+                                    class="absolute block w-full h-full object-cover top-0 left-0"
+                                    alt="Produits alimentaires">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section produits -->
+        <section id="nos-produits"
+            class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-100 py-10 lg:py-16">
+
+            <!-- Blob décoratif -->
+            <div
+                class="absolute -top-24 -left-24 w-72 h-72 md:w-96 md:h-96 bg-blue-600/20 rounded-full blur-3xl animate-blob pointer-events-none">
+            </div>
+
+            <div
+                class="absolute -bottom-24 -right-24 w-72 h-72 md:w-96 md:h-96 bg-blue-600/20 rounded-full blur-3xl animate-blob animation-delay-2000 pointer-events-none">
+            </div>
+
+            <div class="relative px-4 mx-auto max-w-7xl">
+
+                <!-- Titre -->
+                <div class="text-center">
+
+                    <span
+                        class="inline-block px-5 py-2 bg-blue-100 text-blue-600 rounded-full font-semibold tracking-wide">
+                        CE QUE NOUS VENDONS
+                    </span>
+
+                    <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mt-5">
+                        Nos <span class="text-blue-600">Produits</span>
+                    </h2>
+
+                    <p class="mt-6 text-lg text-gray-600 max-w-3xl mx-auto leading-8">
+                        Chez <strong>EcomVivi</strong>, nous mettons à votre disposition une
+                        sélection de produits alimentaires et ménagers de qualité.
+                        Nous nous engageons à offrir des produits fiables, accessibles et
+                        adaptés aux besoins des familles, des commerçants et des entreprises.
+                    </p>
+
+                </div>
+                <!-- Produits -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-10 mt-10 lg:mt-16">
+
+                    <!-- Produit 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 flex flex-col"
+                        data-aos="fade-left" data-aos-duration="1000">
+
+                        <img src="Images/50f43a8ea352a73b5a91713c46467740.jpg" alt="OMO Clean"
+                            class="w-full h-72 object-cover hover:scale-110" loading="lazy" decoding="async">
+
+                        <div class="p-6 flex flex-col flex-grow">
+
+                            <h3 class="text-2xl font-bold text-blue-600">
+                                Poudre à laver
+                            </h3>
+
+                            <p class="mt-4 text-gray-600 leading-7 flex-grow">
+                                Une lessive performante qui élimine efficacement
+                                les taches tout en préservant la douceur,
+                                la propreté et l'éclat de vos vêtements,
+                                même après plusieurs lavages.
+                            </p>
+
+                            <div class="mt-4 flex items-center justify-between border-t border-gray-100 pt-4">
+                                <span class="text-lg font-bold text-blue-600">9.500 FCFA</span>
+                                <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">/ paquet</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Produit 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 flex flex-col"
+                        data-aos="flip-up" data-aos-duration="1000">
+
+                        <img src="Images/4793e0d4d5f9b1463434ccded56e8dae (1).jpg" alt="Tomate en boîte"
+                            class="w-full h-72 object-cover" loading="lazy" decoding="async">
+
+                        <div class="p-6 flex flex-col flex-grow">
+
+                            <h3 class="text-2xl font-bold text-blue-600">
+                                Tomate en boîte
+                            </h3>
+
+                            <p class="mt-4 text-gray-600 leading-7 flex-grow">
+                                Une tomate concentrée au goût riche et naturel,
+                                parfaite pour préparer des sauces savoureuses,
+                                relever vos plats et apporter une saveur authentique
+                                à votre cuisine.
+                            </p>
+
+                            <div class="mt-4 flex items-center justify-between border-t border-gray-100 pt-4">
+                                <span class="text-lg font-bold text-blue-600">3.200 FCFA</span>
+                                <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">/ boîte</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Produit 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 flex flex-col"
+                        data-aos="fade-right" data-aos-duration="1000">
+
+                        <img src="Images/Img5'.jpeg" alt="Farine de blé"
+                            class="w-full h-72 object-cover hover:scale-110" loading="lazy" decoding="async">
+
+                        <div class="p-6 flex flex-col flex-grow">
+
+                            <h3 class="text-2xl font-bold text-blue-600">
+                                Farine de blé
+                            </h3>
+
+                            <p class="mt-4 text-gray-600 leading-7 flex-grow">
+                                Une farine de blé de qualité supérieure,
+                                idéale pour la fabrication du pain,
+                                des pâtisseries, des beignets et de nombreuses
+                                préparations culinaires.
+                            </p>
+
+                            <div class="mt-4 flex items-center justify-between border-t border-gray-100 pt-4">
+                                <span class="text-lg font-bold text-blue-600">15.000 FCFA</span>
+                                <span class="text-xs font-medium text-gray-500 uppercase tracking-wide">/ sac</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- Bouton -->
+                <div class="text-center mt-8">
+
+                    <a href="produits.html"
+                        class="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-xl shadow-lg hover:bg-slate-900 hover:shadow-2xl hover:scale-105 transition-all duration-300">
+
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M4.87617 3.75H19.1238L21 8.86683V10.5C21 11.2516 20.7177 11.9465 20.25 12.4667V21H3.75V12.4667C3.28234 11.9465 3 11.2516 3 10.5V8.86683L4.87617 3.75ZM18.1875 13.3929C18.3807 13.3929 18.5688 13.3731 18.75 13.3355V19.5H15V15H9L9 19.5H5.25V13.3355C5.43122 13.3731 5.61926 13.3929 5.8125 13.3929C6.63629 13.3929 7.36559 13.0334 7.875 12.4667C8.38441 13.0334 9.11371 13.3929 9.9375 13.3929C10.7613 13.3929 11.4906 13.0334 12 12.4667C12.5094 13.0334 13.2387 13.3929 14.0625 13.3929C14.8863 13.3929 15.6156 13.0334 16.125 12.4667C16.6344 13.0334 17.3637 13.3929 18.1875 13.3929ZM10.5 19.5H13.5V16.5H10.5L10.5 19.5ZM19.5 9.75V10.5C19.5 11.2965 18.8856 11.8929 18.1875 11.8929C17.4894 11.8929 16.875 11.2965 16.875 10.5V9.75H19.5ZM19.1762 8.25L18.0762 5.25H5.92383L4.82383 8.25H19.1762ZM4.5 9.75V10.5C4.5 11.2965 5.11439 11.8929 5.8125 11.8929C6.51061 11.8929 7.125 11.2965 7.125 10.5V9.75H4.5ZM8.625 9.75V10.5C8.625 11.2965 9.23939 11.8929 9.9375 11.8929C10.6356 11.8929 11.25 11.2965 11.25 10.5V9.75H8.625ZM12.75 9.75V10.5C12.75 11.2965 13.3644 11.8929 14.0625 11.8929C14.7606 11.8929 15.375 11.2965 15.375 10.5V9.75H12.75Z"
+                                fill="#ffffff" />
+                        </svg>
+
+                        Découvrir nos produits
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- section à propos -->
+        <section id="apropos"
+            class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-100 py-16">
+            <!-- Décoration -->
+            <div class="absolute -top-24 -left-24 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl animate-blob"></div>
+            <div
+                class="absolute -bottom-24 -right-24 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl animate-blob animation-delay-2000">
+            </div>
+
+            <div class="relative px-4 mx-auto max-w-7xl">
+
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+                    <!-- Image -->
+                    <div data-aos="fade-right" data-aos-duration="1000" class="overflow-hidden rounded-3xl shadow-2xl">
+
+                        <img src="Images/Img'.jpeg" alt="À propos de EcomVivi"
+                            class="w-full h-full object-cover hover:scale-110 transition duration-700" loading="lazy"
+                            decoding="async">
+
+                    </div>
+                    <!-- Texte -->
+                    <div data-aos="fade-left" data-aos-duration="1000" class="flex flex-col justify-center">
+
+                        <!-- Badge -->
+                        <span class="inline-block w-fit bg-blue-100 text-blue-600 font-semibold px-5 py-2 rounded-full">
+                            À PROPOS D'ECOMVIVI
+                        </span>
+
+                        <!-- Titre -->
+                        <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mt-5 leading-tight">
+                            Votre partenaire de confiance
+                            <span class="block text-blue-600">
+                                au Bénin
+                            </span>
+                        </h2>
+
+                        <!-- Description -->
+                        <p class="mt-5 text-gray-600 leading-7">
+                            <strong>EcomVivi</strong> est une entreprise spécialisée dans la commercialisation
+                            de produits alimentaires de qualité. Nous confectionnons et sélectionnons nos produits avec
+                            soin
+                            auprès de partenaires de confiance en <strong>Chine</strong> et en <strong>Turquie</strong>
+                            afin d'offrir le meilleur
+                            rapport qualité-prix à nos clients. Notre siège est situé à
+                            <strong>Titirou</strong>, dans la ville de <strong>Parakou</strong>, au
+                            <strong>Bénin</strong>.
+                        </p>
+
+                        <!-- Points forts -->
+                        <div class="space-y-5 mt-8">
+
+                            <div class="flex items-start gap-4">
+
+                                <div class=" flex items-center justify-center flex-shrink-0">
+
+                                    <span class="text-brand">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                            width="32" height="32" viewBox="0 0 24 24" style="color: rgb(37, 99, 235);">
+                                            <path fill="currentColor"
+                                                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m4.2 8.3l-4.8 4.8c-.4.4-1 .4-1.4 0l-2.2-2.2c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l1.5 1.5l4.1-4.1c.4-.4 1-.4 1.4 0s.4 1 0 1.4">
+                                            </path>
+                                        </svg>
+                                    </span>
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-semibold text-lg text-gray-800">
+                                        Importation directe
+                                    </h4>
+
+                                    <p class="text-gray-600">
+                                        Nous confectionnons et sélectionnons nos produits avec soin
+                                        auprès de partenaires de confiance en <strong>Chine</strong> et en
+                                        <strong>Turquie</strong> afin de garantir des produits de qualité,
+                                        une disponibilité et des prix compétitifs.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start gap-4">
+
+                                <div class="flex items-center justify-center flex-shrink-0">
+
+                                    <span class="text-brand">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                            width="32" height="32" viewBox="0 0 24 24" style="color: rgb(37, 99, 235);">
+                                            <path fill="currentColor"
+                                                d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10s10-4.5 10-10S17.5 2 12 2m4.2 8.3l-4.8 4.8c-.4.4-1 .4-1.4 0l-2.2-2.2c-.4-.4-.4-1 0-1.4s1-.4 1.4 0l1.5 1.5l4.1-4.1c.4-.4 1-.4 1.4 0s.4 1 0 1.4">
+                                            </path>
+                                        </svg>
+                                    </span>
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-semibold text-lg text-gray-800">
+                                        Prix compétitifs
+                                    </h4>
+
+                                    <p class="text-gray-600">
+                                        Des tarifs accessibles pour tous nos clients.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="flex items-start gap-4">
+
+                                <div class="flex items-center justify-center flex-shrink-0">
+
+                                    <svg fill="#2563eb" height="32px" width="32px" version="1.1" id="Layer_1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        viewBox="0 0 511.985 511.985" xml:space="preserve">
+                                        <g>
+                                            <g>
+                                                <g>
+                                                    <path
+                                                        d="M222,3.277C153.477,16.59,99.111,72.751,87.702,141.764c-6.79,41.231,1.13,81.857,21.702,116.271
+                                    				c2.35,3.928,4.199,7.011,8.39,14l0.967,1.613c41.753,69.614,59.977,101.895,79.073,142.806l38.825,83.218
+                                    				c7.659,16.416,31.001,16.419,38.664,0.004l34.965-74.901c19.287-41.357,37.562-74.11,79.19-144.553l1.062-1.797
+                                    				c6.181-10.459,9.139-15.472,12.673-21.482c15.271-25.943,23.445-55.54,23.445-86.29C426.659,63.541,329.368-17.545,222,3.277z
+                                    				 M366.44,235.307c-3.518,5.984-6.466,10.977-12.631,21.41l-1.062,1.797c-42.326,71.624-61.063,105.204-81.123,148.219
+                                    				l-15.625,33.472l-19.5-41.795c-19.925-42.687-38.643-75.842-81.147-146.709l-0.967-1.613c-4.187-6.981-6.027-10.051-8.363-13.954
+                                    				c-15.428-25.808-21.358-56.232-16.222-87.425c8.504-51.443,49.357-93.645,100.331-103.549
+                                    				c80.922-15.693,153.862,45.096,153.862,125.49C383.993,193.74,377.88,215.872,366.44,235.307z" />
+                                                    <path d="M255.993,106.652c-35.355,0-64,28.645-64,64s28.645,64,64,64s64-28.645,64-64S291.348,106.652,255.993,106.652z
+                                    				 M255.993,191.985c-11.791,0-21.333-9.542-21.333-21.333s9.542-21.333,21.333-21.333c11.791,0,21.333,9.542,21.333,21.333
+                                    				S267.784,191.985,255.993,191.985z" />
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-semibold text-lg text-gray-800">
+                                        Notre localisation
+                                    </h4>
+
+                                    <p class="text-gray-600">
+                                        Siège social : <strong>Titirou, Parakou – Bénin.</strong>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- Bouton -->
+                        <div class="mt-8 md:mx-auto lg:mx-0">
+
+                            <button type="button" data-history-action
+                                class="inline-flex items-center gap-3 bg-blue-600 text-white px-7 py-3 rounded-xl shadow-lg hover:bg-slate-900 hover:scale-105 transition-all duration-300">
+
+                                <svg width="24px" height="24px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                    class="iconify iconify--emojione-monotone" preserveAspectRatio="xMidYMid meet">
+                                    <path
+                                        d="M2 56h60l-4.979-39.857c-.037-3.346.048-5.199.048-5.199c-.776.239-1.931.331-3.314.331c-.234 0-.479-.004-.728-.009c-.005-2.089.039-3.266.039-3.266c-1.201 1.58-3.765 1.982-6.688 1.982c-3.035 0-6.456-.433-9.144-.433c-4.147 0-5.033 2.775-5.225 3.968c-.192-1.198-1.082-3.961-5.22-3.961c-2.688 0-6.107.433-9.141.433c-2.926 0-5.49-.402-6.691-1.984c0 0 .044 1.176.038 3.26c-.247.004-.493.009-.728.009c-1.385 0-2.537-.092-3.313-.331c0 0 .081 1.771.05 4.986L2 56m51.755-42.863c.505 0 .968-.012 1.393-.035c-.052 5.433.179 20.275 3.489 39.48a45.058 45.058 0 0 1-1.833-.333c.392-.163.703-.385.913-.684c-3.794-16.071-4.557-30.928-4.671-38.438c.24.005.479.01.709.01m-16.131-1.026c2.031 0 4.749.239 7.624.492c2.008.177 4.059.355 5.93.455c.115 7.395.846 21.905 4.407 37.608c-.269.045-.642.08-1.156.08c-1.9 0-4.622-.483-7.254-.951c-2.964-.526-6.028-1.071-8.528-1.071c-1.938 0-3.464.364-4.667.921c-.046.019-.099.033-.142.053l-.007-35.011c.035-.494.383-2.576 3.793-2.576m-24.776.947c1.871-.1 3.92-.278 5.927-.455c2.876-.252 5.594-.492 7.627-.492c3.299 0 3.74 1.928 3.791 2.617l-.009 34.969c-.079-.035-.173-.063-.256-.096c-1.188-.529-2.674-.875-4.555-.875c-2.5 0-5.564.546-8.527 1.072c-2.634.469-5.355.952-7.255.952c-.514 0-.888-.035-1.153-.079c3.562-15.705 4.293-30.22 4.41-37.613m-3.971.044c.426.023.888.035 1.393.035c.23 0 .47-.005.71-.009c-.115 7.508-.879 22.369-4.675 38.443c.209.297.517.519.904.681c-.621.124-1.232.237-1.826.331c3.313-19.206 3.545-34.048 3.494-39.481"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M25.197 13.916c2.566 0 3.412.582 3.421.588l.238-.312l.243-.305c-.099-.074-1.049-.736-3.875-.736c-2.127 0-4.753.539-7.083 1.013c-1.698.348-3.169.649-4.011.649l-.069.778c.927 0 2.441-.311 4.19-.671c2.3-.471 4.894-1.004 6.946-1.004"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M25.063 17.836c2.616 0 3.481.605 3.489.611l.242-.322l.248-.318c-.101-.081-1.069-.768-3.951-.768c-2.169 0-4.847.558-7.223 1.055c-1.733.359-3.233.673-4.091.673l-.073.811c.946 0 2.489-.324 4.274-.696c2.344-.491 4.993-1.046 7.085-1.046"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M24.924 21.916c2.669 0 3.549.627 3.559.635l.247-.336l.254-.329c-.104-.084-1.093-.799-4.032-.799c-2.212 0-4.944.581-7.369 1.097c-1.769.375-3.301.702-4.175.702l-.077.842c.966 0 2.542-.336 4.362-.724c2.393-.513 5.095-1.088 7.231-1.088"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M24.777 26.162c2.723 0 3.622.656 3.633.662l.252-.349l.258-.346c-.105-.085-1.114-.831-4.112-.831c-2.258 0-5.048.605-7.523 1.144c-1.806.391-3.368.729-4.263.729l-.078.88c.984 0 2.596-.351 4.454-.756c2.444-.533 5.2-1.133 7.379-1.133"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M24.626 30.587c2.78 0 3.699.684 3.707.691l.26-.365l.264-.36c-.109-.089-1.138-.865-4.2-.865c-2.304 0-5.153.63-7.681 1.19c-1.846.407-3.441.762-4.355.762l-.081.917c1.005 0 2.649-.366 4.549-.79c2.495-.555 5.309-1.18 7.537-1.18"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M24.467 35.202c2.84 0 3.778.712 3.787.72l.264-.38l.271-.375c-.11-.093-1.161-.903-4.288-.903c-2.354 0-5.266.658-7.848 1.242c-1.887.426-3.518.795-4.451.795l-.085.955c1.028 0 2.71-.381 4.65-.821c2.55-.581 5.427-1.233 7.7-1.233"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M24.303 40.02c2.902 0 3.859.746 3.869.754l.27-.398l.275-.392c-.112-.098-1.186-.943-4.382-.943c-2.405 0-5.38.688-8.021 1.296c-1.927.445-3.596.832-4.548.832l-.09 1c1.051 0 2.77-.4 4.754-.861c2.608-.606 5.549-1.288 7.873-1.288"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M24.128 45.055c2.97 0 3.947.777 3.957.785l.276-.416l.283-.408c-.116-.102-1.212-.986-4.479-.986c-2.46 0-5.503.718-8.204 1.356c-1.971.466-3.678.866-4.652.866l-.093 1.046c1.073 0 2.831-.416 4.861-.897c2.669-.633 5.677-1.346 8.051-1.346"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M35.406 14.504c.008-.006.854-.588 3.42-.588c2.054 0 4.647.533 6.946 1.004c1.749.36 3.263.671 4.189.671l-.069-.778c-.842 0-2.313-.301-4.011-.649c-2.328-.474-4.955-1.013-7.082-1.013c-2.824 0-3.776.662-3.876.736l.244.305l.239.312"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M38.934 17.04c-2.883 0-3.852.687-3.951.768l.248.318l.241.322c.009-.005.873-.611 3.49-.611c2.092 0 4.739.554 7.083 1.045c1.784.373 3.328.696 4.274.696l-.073-.811c-.856 0-2.357-.313-4.09-.673c-2.375-.496-5.053-1.054-7.222-1.054"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M39.072 21.087c-2.939 0-3.928.715-4.031.799l.253.329l.247.336c.009-.007.891-.635 3.559-.635c2.137 0 4.836.575 7.23 1.087c1.82.388 3.397.724 4.361.724l-.075-.842c-.875 0-2.406-.327-4.176-.702c-2.422-.516-5.156-1.096-7.368-1.096"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M39.216 25.298c-3 0-4.009.745-4.112.831l.257.346l.253.349c.01-.006.908-.662 3.632-.662c2.18 0 4.937.6 7.382 1.132c1.858.405 3.468.756 4.453.756L51 27.171c-.894 0-2.456-.338-4.262-.729c-2.474-.539-5.264-1.144-7.522-1.144"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M39.365 29.688c-3.063 0-4.09.776-4.197.865l.264.36l.257.365c.011-.007.927-.691 3.709-.691c2.226 0 5.042.625 7.536 1.18c1.9.424 3.545.79 4.551.79l-.082-.917c-.914 0-2.51-.355-4.354-.762c-2.528-.56-5.377-1.19-7.684-1.19"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M39.521 34.264c-3.127 0-4.177.811-4.288.903l.271.375l.264.38c.008-.008.946-.72 3.786-.72c2.272 0 5.15.652 7.701 1.232c1.94.44 3.621.821 4.649.821l-.086-.955c-.932 0-2.563-.369-4.447-.795c-2.583-.583-5.494-1.241-7.85-1.241"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M39.687 39.04c-3.196 0-4.269.846-4.382.943l.274.392l.271.398c.009-.008.967-.754 3.87-.754c2.323 0 5.265.683 7.872 1.287c1.984.461 3.704.861 4.754.861l-.091-1c-.953 0-2.621-.387-4.546-.832c-2.642-.607-5.617-1.295-8.022-1.295"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M39.857 44.029c-3.268 0-4.365.885-4.48.986l.281.408l.276.416c.011-.008.99-.785 3.957-.785c2.377 0 5.385.713 8.052 1.346c2.029.481 3.788.897 4.863.897l-.095-1.046c-.974 0-2.681-.4-4.651-.866c-2.701-.638-5.745-1.356-8.203-1.356"
+                                        fill="#ffffff"></path>
+                                </svg>
+
+                                Découvrir notre histoire
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- section contact et formulaire -->
+        <section id="contact"
+            class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-100 py-16 sm:py-20">
+
+            <!-- Décorations -->
+            <div
+                class="absolute -top-24 -left-24 w-64 sm:w-80 h-64 sm:h-80 bg-blue-600/20 rounded-full blur-3xl animate-blob">
+            </div>
+
+            <div
+                class="absolute -bottom-24 -right-24 w-64 sm:w-80 h-64 sm:h-80 bg-blue-600/20 rounded-full blur-3xl animate-blob animation-delay-2000">
+            </div>
+
+
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+                <!-- Titre -->
+                <div class="text-center mb-12 sm:mb-16">
+
+                    <span
+                        class="inline-block px-5 py-2 bg-blue-100 text-blue-600 rounded-full font-semibold tracking-wide">
+                        NOUS CONTACTER
+                    </span>
+
+
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mt-5 leading-tight">
+
+                        Prenez contact avec
+                        <span class="text-blue-600">
+                            EcomVivi
+                        </span>
+
+                    </h2>
+                    <p class="mt-5 sm:mt-6 text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-8">
+
+                        Une question sur nos produits ou besoin d'un devis ?
+                        Notre équipe est à votre écoute pour vous accompagner
+                        et répondre à toutes vos demandes.
+
+                    </p>
+
+                </div>
+                <!-- Contenu -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Coordonnées -->
+                    <div data-aos="fade-right" data-aos-duration="1000"
+                        class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 hover:-translate-y-1 transition duration-300">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-8">
+                            Nos coordonnées
+                        </h3>
+                        <div class="space-y-7">
+                            <!-- Localisation -->
+                            <div class="flex items-start gap-4">
+
+                                <div class="flex items-center justify-center flex-shrink-0">
+
+                                    <svg fill="#2563eb" height="32px" width="32px" version="1.1" id="Layer_1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        viewBox="0 0 511.985 511.985" xml:space="preserve">
+                                        <g>
+                                            <g>
+                                                <g>
+                                                    <path
+                                                        d="M222,3.277C153.477,16.59,99.111,72.751,87.702,141.764c-6.79,41.231,1.13,81.857,21.702,116.271
+                                    				c2.35,3.928,4.199,7.011,8.39,14l0.967,1.613c41.753,69.614,59.977,101.895,79.073,142.806l38.825,83.218
+                                    				c7.659,16.416,31.001,16.419,38.664,0.004l34.965-74.901c19.287-41.357,37.562-74.11,79.19-144.553l1.062-1.797
+                                    				c6.181-10.459,9.139-15.472,12.673-21.482c15.271-25.943,23.445-55.54,23.445-86.29C426.659,63.541,329.368-17.545,222,3.277z
+                                    				 M366.44,235.307c-3.518,5.984-6.466,10.977-12.631,21.41l-1.062,1.797c-42.326,71.624-61.063,105.204-81.123,148.219
+                                    				l-15.625,33.472l-19.5-41.795c-19.925-42.687-38.643-75.842-81.147-146.709l-0.967-1.613c-4.187-6.981-6.027-10.051-8.363-13.954
+                                    				c-15.428-25.808-21.358-56.232-16.222-87.425c8.504-51.443,49.357-93.645,100.331-103.549
+                                    				c80.922-15.693,153.862,45.096,153.862,125.49C383.993,193.74,377.88,215.872,366.44,235.307z" />
+                                                    <path d="M255.993,106.652c-35.355,0-64,28.645-64,64s28.645,64,64,64s64-28.645,64-64S291.348,106.652,255.993,106.652z
+                                    				 M255.993,191.985c-11.791,0-21.333-9.542-21.333-21.333s9.542-21.333,21.333-21.333c11.791,0,21.333,9.542,21.333,21.333
+                                    				S267.784,191.985,255.993,191.985z" />
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </svg>
+
+                                </div>
+                                <div>
+
+                                    <h4 class="font-bold text-lg">
+                                        Localisation
+                                    </h4>
+
+                                    <p class="text-gray-600">
+                                        Titirou, Parakou<br>
+                                        Bénin
+                                    </p>
+
+                                </div>
+                            </div>
+                            <!-- Téléphone -->
+                            <div class="flex items-start gap-4">
+                                <div class="flex items-center justify-center flex-shrink-0">
+
+                                    <a href="Tel:2290166212156"
+                                        class="flex items-center gap-3 text-gray-500 hover:text-blue-600 font-bold dark:hover:text-white">
+                                        <svg class="text-blue-600 hover:text-blue-600"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                            width="24" height="24" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M13.25 3a.75.75 0 0 1 .75-.75A7.75 7.75 0 0 1 21.75 10a.75.75 0 0 1-1.5 0A6.25 6.25 0 0 0 14 3.75a.75.75 0 0 1-.75-.75m0 4a.75.75 0 0 1 .75-.75A3.75 3.75 0 0 1 17.75 10a.75.75 0 0 1-1.5 0A2.25 2.25 0 0 0 14 7.75a.75.75 0 0 1-.75-.75M9.004 3.416C8.432 2.606 7.64 2.241 6.8 2.25c-.797.008-1.573.349-2.221.803A6.2 6.2 0 0 0 2.92 4.79c-.41.649-.706 1.416-.666 2.165c.193 3.603 2.22 7.453 5.067 10.302c2.845 2.846 6.644 4.824 10.48 4.446c.752-.074 1.463-.457 2.044-.945a5.8 5.8 0 0 0 1.443-1.84c.34-.692.543-1.49.431-2.267c-.116-.81-.569-1.534-1.402-2.014a16 16 0 0 1-.512-.31c-.15-.093-.31-.194-.504-.31a7.5 7.5 0 0 0-1.249-.618c-.447-.163-.958-.27-1.49-.197c-.551.076-1.063.336-1.506.802c-.341.36-.843.472-1.549.268c-.718-.208-1.526-.724-2.228-1.422c-.702-.696-1.233-1.51-1.46-2.245c-.224-.728-.125-1.263.225-1.632c.473-.498.725-1.052.778-1.638c.052-.57-.09-1.106-.293-1.574c-.304-.699-.82-1.394-1.224-1.936a22 22 0 0 1-.3-.41">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </div>
+
+
+                                <div>
+
+                                    <h4 class="font-bold text-lg">
+                                        Téléphone
+                                    </h4>
+
+                                    <p class="text-gray-600">
+                                        <a href="tel:+2290166212156">+229 01 66 21 21 56</a>
+                                    </p>
+
+                                </div>
+                            </div>
+                            <!-- WhatsApp -->
+                            <div class="flex items-start gap-4">
+                                <div class="flex items-center justify-center flex-shrink-0">
+                                    <a href="http://wa.me/2290197763250" target="_blank" rel="noopener noreferrer"
+                                        class="flex items-center gap-3 text-gray-500 hover:text-blue-600 font-bold dark:hover:text-white">
+                                        <svg class="text-blue-600 hover:text-blue-600"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                            width="20" height="20" viewBox="0 0 32 32">
+                                            <path fill="currentColor"
+                                                d="M23.328 19.177c-.401-.203-2.354-1.156-2.719-1.292c-.365-.13-.63-.198-.896.203c-.26.391-1.026 1.286-1.26 1.547s-.464.281-.859.104c-.401-.203-1.682-.62-3.203-1.984c-1.188-1.057-1.979-2.359-2.214-2.76c-.234-.396-.026-.62.172-.818c.182-.182.401-.458.604-.698c.193-.24.255-.401.396-.661c.13-.281.063-.5-.036-.698s-.896-2.161-1.229-2.943c-.318-.776-.651-.677-.896-.677c-.229-.021-.495-.021-.76-.021s-.698.099-1.063.479c-.365.401-1.396 1.359-1.396 3.297c0 1.943 1.427 3.823 1.625 4.104c.203.26 2.807 4.26 6.802 5.979c.953.401 1.693.641 2.271.839c.953.302 1.823.26 2.51.161c.76-.125 2.354-.964 2.688-1.901c.339-.943.339-1.724.24-1.901c-.099-.182-.359-.281-.76-.458zM16.083 29h-.021c-2.365 0-4.703-.641-6.745-1.839l-.479-.286l-5 1.302l1.344-4.865l-.323-.5a13.17 13.17 0 0 1-2.021-7.01c0-7.26 5.943-13.182 13.255-13.182c3.542 0 6.865 1.38 9.365 3.88a13.06 13.06 0 0 1 3.88 9.323C29.328 23.078 23.39 29 16.088 29zM27.359 4.599C24.317 1.661 20.317 0 16.062 0C7.286 0 .14 7.115.135 15.859c0 2.792.729 5.516 2.125 7.927L0 32l8.448-2.203a16.1 16.1 0 0 0 7.615 1.932h.005c8.781 0 15.927-7.115 15.932-15.865c0-4.234-1.651-8.219-4.661-11.214z">
+                                            </path>
+                                        </svg>
+                                    </a>
+
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">
+                                        WhatsApp
+                                    </h4>
+
+                                    <p class="text-gray-600">
+                                        <a href="http://wa.me/2290166212156">wa.me/2290166212156</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- Email -->
+                            <div class="flex items-start gap-4">
+                                <div class="flex items-center justify-center flex-shrink-0">
+                                    <a href="https://mail.google.com/">
+                                        <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M4 18L9 12M20 18L15 12M3 8L10.225 12.8166C10.8665 13.2443 11.1872 13.4582 11.5339 13.5412C11.8403 13.6147 12.1597 13.6147 12.4661 13.5412C12.8128 13.4582 13.1335 13.2443 13.775 12.8166L21 8M6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V8.2C21 7.0799 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19Z"
+                                                stroke="#2563eb" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </a>
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-bold text-lg">
+                                        Adresse e-mail
+                                    </h4>
+
+                                    <p class="text-gray-600 break-all">
+                                        <a href="https://mail.google.com/">ecomvivi@gmail.com</a>
+                                    </p>
+
+                                </div>
+
+                            </div>
+                            <!-- Facebook -->
+                            <div class="flex items-start gap-4">
+
+                                <div class="flex items-center justify-center flex-shrink-0">
+
+                                    <a href="https://www.facebook.com/share/18jg6zPYLU/" target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="flex items-center gap-3 text-gray-500 font-bold hover:text-blue-600 dark:hover:text-white">
+                                        <svg class="text-blue-600 hover:text-blue-600"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                            width="20" height="20" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4z">
+                                            </path>
+                                        </svg>
+                                    </a>
+
+                                </div>
+                                <div>
+
+                                    <h4 class="font-bold text-lg">
+                                        Facebook
+                                    </h4>
+
+                                    <p class="text-gray-600 break-all">
+                                        <a href="https://www.facebook.com/share/18jg6zPYLU/" target="_blank"
+                                            rel="noopener noreferrer">facebook.com/ecomvivi</a>
+                                    </p>
+
+                                </div>
+
+                            </div>
+                            <!-- LinkedIn -->
+                            <div class="flex items-start gap-4">
+
+                                <div class=" flex items-center justify-center flex-shrink-0">
+
+                                    <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"
+                                        class="flex items-center gap-3 text-gray-500 hover:text-blue-600 font-bold dark:hover:text-white">
+                                        <svg class="text-blue-600 hover:text-blue-600"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                            width="20" height="20" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M4.75 1.875a2.125 2.125 0 1 0 0 4.25a2.125 2.125 0 0 0 0-4.25m-2 6A.125.125 0 0 0 2.625 8v13c0 .069.056.125.125.125h4A.125.125 0 0 0 6.875 21V8a.125.125 0 0 0-.125-.125zm6.5 0A.125.125 0 0 0 9.125 8v13c0 .069.056.125.125.125h4a.125.125 0 0 0 .125-.125v-7a1.875 1.875 0 1 1 3.75 0v7c0 .069.056.125.125.125h4a.125.125 0 0 0 .125-.125v-8.62c0-2.427-2.11-4.325-4.525-4.106a7.2 7.2 0 0 0-2.169.548l-1.306.56V8a.125.125 0 0 0-.125-.125z">
+                                            </path>
+                                        </svg>
+                                    </a>
+
+                                </div>
+
+                                <div>
+
+                                    <h4 class="font-bold text-lg">
+                                        LinkedIn
+                                    </h4>
+
+                                    <p class="text-gray-600 break-all">
+                                        <a href="https://www.linkedin.com/" target="_blank"
+                                            rel="noopener noreferrer">linkedin.com/company/ecomvivi</a>
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- Formulaire -->
+                    <div data-aos="fade-left" data-aos-duration="1000">
+                        <form id="contact-form"
+                            class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 space-y-6 hover:-translate-y-1 transition duration-300">
+                            <div>
+
+                                <label class="block mb-2 font-medium">
+                                    Nom complet *
+                                </label>
+
+                                <input type="text" name="name" required placeholder="Votre nom complet"
+                                    class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-200 focus:border-blue-500 outline-none">
+
+                            </div>
+                            <div>
+
+                                <label class="block mb-2 font-medium">
+                                    Adresse e-mail *
+                                </label>
+
+                                <input type="email" name="email" required placeholder="exemple@email.com"
+                                    class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-200 focus:border-blue-500 outline-none">
+
+                            </div>
+
+                            <div>
+
+                                <label class="block mb-2 font-medium">
+                                    Produits sélectionnés *
+                                </label>
+
+                                <input type="text" name="products" required
+                                    placeholder="Ex : Farine de blé, Tomate en boîte..."
+                                    class="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-200 focus:border-blue-500 outline-none">
+
+                            </div>
+
+                            <div>
+
+                                <label class="block mb-2 font-medium">
+                                    Message/Quantité *
+                                </label>
+
+                                <textarea rows="6" name="message" required
+                                    placeholder="Décrivez votre demande ou indiquez la quantité souhaitée..."
+                                    class="w-full px-5 py-4 border border-gray-300 rounded-xl resize-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500 outline-none"></textarea>
+
+                            </div>
+
+                            <div id="form-message"
+                                class="hidden rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm text-blue-700">
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit"
+                                    class="inline-flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-blue-600 text-white font-semibold hover:bg-slate-900 transition duration-300">
+
+                                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 12L4 4L6 12M20 12L4 20L6 12M20 12H6" stroke="#ffffff"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+
+                                    <span>Envoyer votre demande</span>
+
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section Géolocalisation -->
+        <section id="localisation"
+            class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-100 py-16">
+
+            <!-- Décoration -->
+            <div class="absolute -top-24 -left-24 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl animate-blob"></div>
+
+            <div
+                class="absolute -bottom-24 -right-24 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl animate-blob animation-delay-2000">
+            </div>
+
+            <div class="relative max-w-7xl mx-auto px-4">
+
+                <!-- Titre -->
+                <div class="text-center mb-8">
+
+                    <span
+                        class="inline-block px-5 py-2 bg-blue-100 text-blue-600 rounded-full font-semibold tracking-wide">
+                        OÙ NOUS TROUVER
+                    </span>
+
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mt-5 leading-tight">
+                        Notre
+                        <span class="text-blue-600">Localisation</span>
+                    </h2>
+
+                    <p class="mt-6 text-base md:text-lg text-gray-600 max-w-3xl mx-auto leading-7 md:leading-8">
+                        Le siège d'<strong>EcomVivi</strong> est situé à
+                        <strong>Titirou</strong>, dans la ville de
+                        <strong>Parakou</strong>, au <strong>Bénin</strong>.
+                        Retrouvez-nous facilement grâce à la carte ci-dessous.
+                    </p>
+
+                </div>
+
+                <!-- Carte -->
+                <div data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true"
+                    class="location-map overflow-hidden rounded-3xl shadow-2xl w-full border-4 border-white hover:shadow-blue-300/40 transition-all duration-500">
+
+                    <iframe class="location-map-frame"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3937.1896557866353!2d2.6289272747974777!3d9.316457190756799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10320500647e63e1%3A0xdb558ede514e4617!2sTitirou!5e0!3m2!1sfr!2sbj!4v1789384449737!5m2!1sfr!2sbj"
+                        allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+        </section>
+        <!-- Modal du panier -->
+        <section>
+            <div id="cart-modal" class="hidden fixed inset-0 z-50 items-center justify-center p-4" role="dialog"
+                aria-modal="true" aria-labelledby="cart-modal-title">
+                <div class="cart-overlay absolute inset-0 bg-slate-950/60 backdrop-blur-sm" data-cart-close></div>
+                <div class="cart-panel relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl">
+                    <div
+                        class="flex items-center justify-between bg-gradient-to-r from-blue-600 to-blue-800 px-6 py-5 text-white">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-widest text-blue-100">EcomVivi</p>
+                            <h2 id="cart-modal-title" class="mt-1 text-2xl font-bold">Votre panier</h2>
+                        </div>
+                        <button type="button" data-cart-close aria-label="Fermer le panier"
+                            class="rounded-full p-2 text-blue-100 hover:bg-white/15 hover:text-white transition"><span
+                                class="text-2xl leading-none">&times;</span></button>
+                    </div>
+                    <div id="cart-items" class="max-h-80 overflow-y-auto p-6"></div>
+                    <div class="border-t border-gray-100 px-6 py-5"><label
+                            class="mb-2 block text-sm font-semibold text-gray-700" for="cart-delivery-option">Mode de
+                            livraison</label><select id="cart-delivery-option" data-delivery-option
+                            class="mb-4 w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm focus:border-blue-600">
+                            <option value="0">Retrait sur place - Gratuit</option>
+                            <option value="1000">Livraison locale - 1.000 FCFA</option>
+                            <option value="2500">Livraison express - 2.500 FCFA</option>
+                        </select>
+                        <div class="mb-4 space-y-2 text-sm">
+                            <div class="flex justify-between text-gray-500"><span>Sous-total</span><span
+                                    class="cart-subtotal">0 FCFA</span></div>
+                            <div class="flex justify-between text-gray-500"><span>Livraison</span><span
+                                    class="cart-delivery">Gratuit</span></div>
+                            <div
+                                class="flex justify-between border-t border-gray-100 pt-3 text-lg font-bold text-gray-900">
+                                <span>Total</span><span id="cart-total" class="text-blue-600">0 FCFA</span></div>
+                        </div><a href="index.html#contact" data-cart-checkout
+                            class="block w-full rounded-lg bg-blue-600 py-3 text-center font-semibold text-white hover:bg-blue-700 transition">Passer
+                            la commande</a>
+                    </div>
+                </div>
+            </div>
+            <div id="auth-modal" class="hidden fixed inset-0 z-50 items-center justify-center p-4" role="dialog"
+                aria-modal="true" aria-labelledby="auth-modal-title">
+                <div class="auth-overlay absolute inset-0 bg-slate-950/60 backdrop-blur-sm" data-auth-close></div>
+                <div class="auth-panel relative w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl">
+                    <div class="bg-gradient-to-br from-blue-600 to-blue-800 px-6 py-7 text-white">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <p class="text-sm font-semibold uppercase tracking-widest text-blue-100">EcomVivi</p>
+                                <h2 id="auth-modal-title" class="mt-2 text-2xl font-bold">Bienvenue</h2>
+                                <p id="auth-modal-subtitle" class="mt-1 text-sm text-blue-100">Accédez à votre espace
+                                    client.</p>
+                            </div>
+                            <button type="button" data-auth-close aria-label="Fermer"
+                                class="rounded-full p-2 text-blue-100 hover:bg-white/15 hover:text-white transition"><span
+                                    class="text-2xl leading-none">&times;</span></button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div id="auth-feedback" class="hidden mb-4 rounded-lg px-4 py-3 text-sm" role="alert"></div>
+                        <form id="login-form" class="space-y-4" novalidate>
+                            <div><label for="login-email" class="mb-1 block text-sm font-semibold text-gray-700">Adresse
+                                    e-mail</label><input id="login-email" name="email" type="email" autocomplete="email"
+                                    required
+                                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-blue-600"
+                                    placeholder="vous@exemple.com"></div>
+                            <div><label for="login-password" class="mb-1 block text-sm font-semibold text-gray-700">Mot
+                                    de passe</label><input id="login-password" name="password" type="password"
+                                    autocomplete="current-password" required minlength="6"
+                                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-blue-600"
+                                    placeholder="Minimum 6 caractères"></div>
+                            <button type="submit"
+                                class="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700 transition">Se
+                                connecter</button>
+                        </form>
+                        <form id="register-form" class="hidden space-y-4" novalidate>
+                            <div><label for="register-name" class="mb-1 block text-sm font-semibold text-gray-700">Nom
+                                    complet</label><input id="register-name" name="name" type="text" autocomplete="name"
+                                    required minlength="2"
+                                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-blue-600"
+                                    placeholder="Votre nom complet"></div>
+                            <div><label for="register-email"
+                                    class="mb-1 block text-sm font-semibold text-gray-700">Adresse e-mail</label><input
+                                    id="register-email" name="email" type="email" autocomplete="email" required
+                                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-blue-600"
+                                    placeholder="vous@exemple.com"></div>
+                            <div><label for="register-password"
+                                    class="mb-1 block text-sm font-semibold text-gray-700">Mot de passe</label><input
+                                    id="register-password" name="password" type="password" autocomplete="new-password"
+                                    required minlength="6"
+                                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-blue-600"
+                                    placeholder="Minimum 6 caractères"></div>
+                            <div><label for="register-confirm"
+                                    class="mb-1 block text-sm font-semibold text-gray-700">Confirmer le mot de
+                                    passe</label><input id="register-confirm" name="confirm" type="password"
+                                    autocomplete="new-password" required minlength="6"
+                                    class="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:border-blue-600"
+                                    placeholder="Répétez votre mot de passe"></div>
+                            <label class="flex items-start gap-2 text-xs text-gray-500"><input name="terms"
+                                    type="checkbox" required class="mt-0.5 text-blue-600"><span>J'accepte les conditions
+                                    d'utilisation d'EcomVivi.</span></label>
+                            <button type="submit"
+                                class="w-full rounded-lg bg-blue-600 py-3 font-semibold text-white hover:bg-blue-700 transition">Créer
+                                mon compte</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Section footer -->
+    <section class="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white">
+        <div class="h-1 bg-gradient-to-r from-blue-600 via-blue-600 to-blue-600"></div>
+        <footer class="px-4 mx-auto max-w-7xl pt-12 pb-4">
+
+            <div class="px-5 sm:px-8 lg:px-4 mx-auto max-w-7xl pt-12 pb-6">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+
+                    <!-- EcomVivi -->
+                    <div data-aos="fade-right" data-aos-duration="1000">
+
+                        <h2 class="text-3xl font-bold text-blue-400 text-center sm:text-left">
+                            EcomVivi
+                        </h2>
+
+                        <p class="mt-6 text-gray-300 leading-8 text-center sm:text-left">
+                            EcomVivi est une entreprise spécialisée dans la
+                            commercialisation de produits alimentaires.
+                            Nous importons nos produits directement de Chine afin
+                            d'offrir à nos clients des produits fiables,
+                            accessibles et adaptés à tous les besoins.
+                        </p>
+
+                    </div>
+                    <!-- Liens rapides -->
+                    <div class="flex flex-col items-center text-center" data-aos="fade-up" data-aos-duration="1000">
+
+                        <h3 class="text-xl font-bold text-white mb-6">
+                            Liens rapides
+                        </h3>
+
+                        <ul class="space-y-4">
+                            <li><a href="#accueil" class="text-gray-400 hover:text-blue-600 transition">Accueil</a></li>
+                            <li><a href="#apropos" class="text-gray-400 hover:text-blue-600 transition">À
+                                    propos</a></li>
+                            <li><a href="#produits" class="text-gray-400 hover:text-blue-600 transition">Nos
+                                    produits</a></li>
+                            <li><a href="#contact" class="text-gray-400 hover:text-blue-600 transition">Contact</a></li>
+                            <li><a href="#localisation"
+                                    class="text-gray-400 hover:text-blue-600 transition">Localisation</a></li>
+                        </ul>
+
+                    </div>
+                    <!-- Nos produits -->
+                    <div class="flex flex-col items-center text-center" data-aos="fade-left" data-aos-duration="1200">
+
+                        <h3 class="text-xl font-bold text-white mb-6">
+                            Nos produits
+                        </h3>
+
+                        <p class="max-w-sm text-gray-400 leading-8 text-center">
+                            Farine de blé, Tomate en boîte, Riz, Spaghetti,
+                            Huile végétale, Coquillettes, Mayonnaise,
+                            Sucre, Vinaigre, Petits pois, Moutarde,
+                            Poudre à laver.
+                        </p>
+
+                    </div>
+
+                    <!-- Contact rapide -->
+                    <div class="flex flex-col items-center text-center lg:items-start lg:text-left" data-aos="fade-left"
+                        data-aos-duration="1200">
+
+                        <h3 class="text-xl font-bold text-white mb-6">
+                            Parlons de votre besoin
+                        </h3>
+
+                        <p class="text-gray-400 leading-7 mb-5">
+                            Notre équipe vous répond rapidement pour vos commandes et demandes d'information.
+                        </p>
+
+                        <a href="https://wa.me/2290166212156" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-500 transition">
+                            Écrire sur WhatsApp
+                        </a>
+
+                    </div>
+
+
+                </div>
+                <div class="border-t border-gray-700 mt-10 pt-6">
+
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+                        <p class="text-gray-400 text-center">
+                            © 2026
+                            <span class="text-blue-600 font-semibold">
+                                EcomVivi
+                            </span>.
+                            Tous droits réservés.
+                        </p>
+                        <div class="flex items-center justify-center gap-4 flex-wrap">
+                            <!-- tes boutons réseaux sociaux ici -->
+
+                            <a href="https://wa.me/2290166212156" target="_blank" rel="noopener noreferrer"
+                                class="w-11 h-11 rounded-full bg-gray-800 hover:bg-blue-50 flex items-center justify-center transition-all duration-300 hover:scale-110">
+
+                                <svg class="text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="20"
+                                    height="20" viewBox="0 0 32 32">
+                                    <path fill="currentColor"
+                                        d="M23.328 19.177c-.401-.203-2.354-1.156-2.719-1.292c-.365-.13-.63-.198-.896.203c-.26.391-1.026 1.286-1.26 1.547s-.464.281-.859.104c-.401-.203-1.682-.62-3.203-1.984c-1.188-1.057-1.979-2.359-2.214-2.76c-.234-.396-.026-.62.172-.818c.182-.182.401-.458.604-.698c.193-.24.255-.401.396-.661c.13-.281.063-.5-.036-.698s-.896-2.161-1.229-2.943c-.318-.776-.651-.677-.896-.677c-.229-.021-.495-.021-.76-.021s-.698.099-1.063.479c-.365.401-1.396 1.359-1.396 3.297c0 1.943 1.427 3.823 1.625 4.104c.203.26 2.807 4.26 6.802 5.979c.953.401 1.693.641 2.271.839c.953.302 1.823.26 2.51.161c.76-.125 2.354-.964 2.688-1.901c.339-.943.339-1.724.24-1.901c-.099-.182-.359-.281-.76-.458zM16.083 29h-.021c-2.365 0-4.703-.641-6.745-1.839l-.479-.286l-5 1.302l1.344-4.865l-.323-.5a13.17 13.17 0 0 1-2.021-7.01c0-7.26 5.943-13.182 13.255-13.182c3.542 0 6.865 1.38 9.365 3.88a13.06 13.06 0 0 1 3.88 9.323C29.328 23.078 23.39 29 16.088 29zM27.359 4.599C24.317 1.661 20.317 0 16.062 0C7.286 0 .14 7.115.135 15.859c0 2.792.729 5.516 2.125 7.927L0 32l8.448-2.203a16.1 16.1 0 0 0 7.615 1.932h.005c8.781 0 15.927-7.115 15.932-15.865c0-4.234-1.651-8.219-4.661-11.214z">
+                                    </path>
+                                </svg>
+
+                            </a>
+
+                            <a href="tel:+2290166212156"
+                                class="w-11 h-11 rounded-full bg-gray-800 hover:bg-blue-50 flex items-center justify-center transition-all duration-300 hover:scale-110">
+
+                                <svg class="text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                    xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" width="24"
+                                    height="24" viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M13.25 3a.75.75 0 0 1 .75-.75A7.75 7.75 0 0 1 21.75 10a.75.75 0 0 1-1.5 0A6.25 6.25 0 0 0 14 3.75a.75.75 0 0 1-.75-.75m0 4a.75.75 0 0 1 .75-.75A3.75 3.75 0 0 1 17.75 10a.75.75 0 0 1-1.5 0A2.25 2.25 0 0 0 14 7.75a.75.75 0 0 1-.75-.75M9.004 3.416C8.432 2.606 7.64 2.241 6.8 2.25c-.797.008-1.573.349-2.221.803A6.2 6.2 0 0 0 2.92 4.79c-.41.649-.706 1.416-.666 2.165c.193 3.603 2.22 7.453 5.067 10.302c2.845 2.846 6.644 4.824 10.48 4.446c.752-.074 1.463-.457 2.044-.945a5.8 5.8 0 0 0 1.443-1.84c.34-.692.543-1.49.431-2.267c-.116-.81-.569-1.534-1.402-2.014a16 16 0 0 1-.512-.31c-.15-.093-.31-.194-.504-.31a7.5 7.5 0 0 0-1.249-.618c-.447-.163-.958-.27-1.49-.197c-.551.076-1.063.336-1.506.802c-.341.36-.843.472-1.549.268c-.718-.208-1.526-.724-2.228-1.422c-.702-.696-1.233-1.51-1.46-2.245c-.224-.728-.125-1.263.225-1.632c.473-.498.725-1.052.778-1.638c.052-.57-.09-1.106-.293-1.574c-.304-.699-.82-1.394-1.224-1.936a22 22 0 0 1-.3-.41">
+                                    </path>
+                                </svg>
+
+                            </a>
+
+                            <a href="mailto:ecomvivi@gmail.com" target="_blank" rel="noopener noreferrer"
+                                class="w-11 h-11 rounded-full bg-gray-800 hover:bg-blue-100 flex items-center justify-center transition-all duration-300 hover:scale-110">
+
+                                <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M4 18L9 12M20 18L15 12M3 8L10.225 12.8166C10.8665 13.2443 11.1872 13.4582 11.5339 13.5412C11.8403 13.6147 12.1597 13.6147 12.4661 13.5412C12.8128 13.4582 13.1335 13.2443 13.775 12.8166L21 8M6.2 19H17.8C18.9201 19 19.4802 19 19.908 18.782C20.2843 18.5903 20.5903 18.2843 20.782 17.908C21 17.4802 21 16.9201 21 15.8V8.2C21 7.0799 21 6.51984 20.782 6.09202C20.5903 5.71569 20.2843 5.40973 19.908 5.21799C19.4802 5 18.9201 5 17.8 5H6.2C5.0799 5 4.51984 5 4.09202 5.21799C3.71569 5.40973 3.40973 5.71569 3.21799 6.09202C3 6.51984 3 7.07989 3 8.2V15.8C3 16.9201 3 17.4802 3.21799 17.908C3.40973 18.2843 3.71569 18.5903 4.09202 18.782C4.51984 19 5.07989 19 6.2 19Z"
+                                        stroke="#9CA3AF" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
